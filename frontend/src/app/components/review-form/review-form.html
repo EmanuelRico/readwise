@@ -1,0 +1,38 @@
+<form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title" />
+    <div *ngIf="reviewForm.controls['title'].invalid && (reviewForm.controls['title'].dirty || reviewForm.controls['title'].touched)" style="color:red;">
+      <small *ngIf="reviewForm.controls['title'].errors?.['required']">Title is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="author">Author:</label>
+    <input id="author" type="text" formControlName="author" />
+    <div *ngIf="reviewForm.controls['author'].invalid && (reviewForm.controls['author'].dirty || reviewForm.controls['author'].touched)" style="color:red;">
+      <small *ngIf="reviewForm.controls['author'].errors?.['required']">Author is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="review">Review:</label>
+    <textarea id="review" formControlName="review"></textarea>
+    <div *ngIf="reviewForm.controls['review'].invalid && (reviewForm.controls['review'].dirty || reviewForm.controls['review'].touched)" style="color:red;">
+      <small *ngIf="reviewForm.controls['review'].errors?.['required']">Review text is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="rating">Rating (1 to 5):</label>
+    <input id="rating" type="number" formControlName="rating" min="1" max="5" />
+    <div *ngIf="reviewForm.controls['rating'].invalid && (reviewForm.controls['rating'].dirty || reviewForm.controls['rating'].touched)" style="color:red;">
+      <small *ngIf="reviewForm.controls['rating'].errors?.['required']">Rating is required.</small>
+      <small *ngIf="reviewForm.controls['rating'].errors?.['min'] || reviewForm.controls['rating'].errors?.['max']">Rating must be between 1 and 5.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="reviewForm.invalid">
+    {{ isEditMode ? 'Update Review' : 'Add Review' }}
+  </button>
+</form>
