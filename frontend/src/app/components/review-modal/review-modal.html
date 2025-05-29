@@ -1,0 +1,19 @@
+<h2>Reviews</h2>
+
+<div *ngFor="let review of reviews" class="review-item">
+  <p>{{ review.review }}</p>
+  <button mat-icon-button color="warn" aria-label="Delete review" (click)="deleteReview(review._id)">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <hr />
+</div>
+
+<div class="review-form">
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>New Review</mat-label>
+    <textarea matInput [(ngModel)]="newReviewText"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="addReview()">Add Review</button>
+  <button mat-button (click)="onCancel()">Close</button>
+</div>

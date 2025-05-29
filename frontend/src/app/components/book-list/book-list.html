@@ -1,0 +1,38 @@
+<h2>Books</h2>
+
+<div class="actions" style="margin-bottom: 1rem;">
+  <button mat-raised-button color="primary" [routerLink]="['/create']">
+    Add New Book
+  </button>
+</div>
+
+<!-- Contenedor horizontal -->
+<div class="books-container">
+  <div *ngFor="let book of books" class="book-item" (click)="openReviewModal(book)">
+    <h3>Título: {{ book.title }} </h3>
+
+    <div *ngIf="book.image" style="margin: 0.5rem 0;">
+      <img [src]="book.image" alt="{{ book.title }}" />
+    </div>
+
+    <p><strong>Autor:</strong> {{ book.author }}</p>
+
+    <div class="description-container" *ngIf="book.description">
+      <strong>Descripción:</strong>
+      <div class="description-text">
+        {{ book.description }}
+      </div>
+    </div>
+
+    <p *ngIf="book.rating !== undefined"><strong>Calificación:</strong> {{ book.rating }}</p>
+
+    <button mat-button color="accent" (click)="editBook(book); $event.stopPropagation()">
+      Edit
+    </button>
+
+    <!-- Botón para eliminar -->
+    <button mat-button color="warn" *ngIf="book._id" (click)="deleteBook(book._id); $event.stopPropagation()">
+      Delete
+    </button>
+  </div>
+</div>

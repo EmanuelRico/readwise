@@ -16,8 +16,11 @@ mongoose.connect('mongodb+srv://rico:bolillo123@cluster0.gr86zsc.mongodb.net/', 
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error(err));
 
-const reviewRoutes = require('./routes/review.routes');
-app.use('/api/reviews', reviewRoutes);
+const authRoutes = require('./routes/auth.routes');
+app.use('/api/auth', authRoutes);
+
+const bookRoutes = require('./routes/book.routes');
+app.use('/api/books', bookRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -1,0 +1,51 @@
+<div class="login-container">
+  <h2 *ngIf="!isRegistering">Login</h2>
+  <h2 *ngIf="isRegistering">Registrar Usuario</h2>
+
+  <form *ngIf="!isRegistering" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="username" placeholder="Username" />
+    <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched">
+      Username is required.
+    </div>
+
+    <input type="password" formControlName="password" placeholder="Password" />
+    <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
+      Password is required.
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+    <button type="button" (click)="toggleRegister()">Registrar usuario</button>
+    
+    <div *ngIf="errorMessage" style="color:red;">{{ errorMessage }}</div>
+  </form>
+
+  <form *ngIf="isRegistering" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <input type="text" formControlName="name" placeholder="Nombre completo" />
+    <div *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched">
+      Nombre es requerido.
+    </div>
+
+    <input type="text" formControlName="username" placeholder="Username" />
+    <div *ngIf="registerForm.controls['username'].invalid && registerForm.controls['username'].touched">
+      Username es requerido.
+    </div>
+
+    <input type="password" formControlName="password" placeholder="Password" />
+    <div *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
+      Password es requerido.
+    </div>
+
+    <input type="password" formControlName="confirmPassword" placeholder="Confirmar Password" />
+    <div *ngIf="registerForm.controls['confirmPassword'].invalid && registerForm.controls['confirmPassword'].touched">
+      Confirmar Password es requerido.
+    </div>
+    <div *ngIf="passwordMismatch" style="color:red;">
+      Las contraseñas no coinciden.
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Registrar</button>
+
+    <button type="button" (click)="toggleRegister()">Volver al login</button>
+  </form>
+</div>

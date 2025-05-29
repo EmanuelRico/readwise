@@ -1,0 +1,42 @@
+<form [formGroup]="bookForm" (ngSubmit)="save()">
+  <div>
+    <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title" />
+    <div
+      *ngIf="bookForm.controls['title'].invalid && (bookForm.controls['title'].dirty || bookForm.controls['title'].touched)"
+      style="color:red;">
+      <small *ngIf="bookForm.controls['title'].errors?.['required']">Title is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="author">Author:</label>
+    <input id="author" type="text" formControlName="author" />
+    <div
+      *ngIf="bookForm.controls['author'].invalid && (bookForm.controls['author'].dirty || bookForm.controls['author'].touched)"
+      style="color:red;">
+      <small *ngIf="bookForm.controls['author'].errors?.['required']">Author is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+
+  <div>
+    <label for="image">Image URL:</label>
+    <input id="image" type="text" formControlName="image" />
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Rating</mat-label>
+    <mat-select formControlName="rating" required>
+      <mat-option *ngFor="let r of [1,2,3,4,5]" [value]="r">{{ r }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="bookForm.invalid">
+    {{ isEditMode ? 'Update Book' : 'Add Book' }}
+  </button>
+</form>

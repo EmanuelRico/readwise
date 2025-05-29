@@ -1,0 +1,92 @@
+h2 {
+  margin-bottom: 1rem;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilo general de botones */
+button {
+  margin: 0.25rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+button:hover {
+  background-color: #303f9f;
+}
+
+/* Contenedor de libros en fila horizontal */
+.books-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Cada libro como tarjeta */
+.book-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 0.75rem;
+  width: 200px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 0.85rem;
+  margin: 0.5rem;
+}
+
+.book-item:hover {
+  transform: scale(1.03);
+}
+
+.book-item h3 {
+  font-size: 1rem;
+  margin: 0.4rem 0;
+}
+
+/* Imagen dentro de la tarjeta */
+.book-item img {
+  max-width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+/* Contenedor de descripción con scroll si es muy larga */
+.description-container {
+  margin-top: 0.5rem;
+}
+
+.description-text {
+  max-height: 80px;
+  overflow-y: auto;
+  padding: 0.4rem;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: pre-line;
+}
+
+/* Estilo del separador */
+hr {
+  margin: 1.5rem 0;
+}
+
+/* Espacio para formularios */
+.app-review-form {
+  margin-top: 2rem;
+}
