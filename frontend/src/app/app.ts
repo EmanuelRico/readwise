@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class App {
   title = 'frontend';
   currentYear: number = new Date().getFullYear();
+
+  showLogout = true;
+
+  constructor(private router: Router) {
+    // Escuchar cambios de ruta
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      // Oculta el logout si estamos en /login
+      this.showLogout = event.url !== '/login';
+    });
+  }
 
   logout() {
     // Aquí puedes limpiar el token, redirigir, etc.
