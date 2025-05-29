@@ -8,11 +8,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';  // <--- Importa CommonModule
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule,],
+  imports: [
+    RouterOutlet,
+    MatToolbarModule,
+    MatButtonModule,
+    CommonModule  // <--- Agrega CommonModule aquí
+  ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
@@ -28,14 +34,13 @@ export class App {
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       // Oculta el logout si estamos en /login
-      this.showLogout = event.url !== '/login';
+      this.showLogout = event.url !== '/';
+      console.log(`Ruta actual: ${event.url} Mostrar logout: ${this.showLogout}`);
     });
   }
 
   logout() {
-    // Aquí puedes limpiar el token, redirigir, etc.
     localStorage.removeItem('token'); // Ejemplo
-    // Redirigir al login
     window.location.href = '/';
   }
 }
